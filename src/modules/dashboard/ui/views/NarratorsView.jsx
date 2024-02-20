@@ -21,28 +21,33 @@ import {
 } from '@mui/material';
 // Components
 import { EmptyTable } from '../components';
-// Database
-import {
-  citiesData,
-  specialtiesData
-} from '../../../../database';
 // Hooks
-import { useNarrators } from '../../hooks';
+import { useUsers } from '../../../auth/hooks';
+import {
+  useCities,
+  useNarrators,
+  useTags
+} from '../../hooks';
 
 
-export const NarratorsView = () => {
+export const NarratorsView = ({ navigation }) => {
   const [ searchTerm, setSearchTerm ] = useState( '' );
   const [ filteredNarrators, setFilteredNarrators ] = useState( [] );
   const [ selectedCity, setSelectedCity ] = useState( '' );
   const [ selectedSpecialty, setSelectedSpecialty ] = useState( '' );
+  const { handleDeleteUser } = useUsers();
   const { narrators } = useNarrators();
+  const { tags } = useTags();
+  const { cities } = useCities();
 
   const handleViewProfile = ( narratorId ) => {
-    console.log( `Ver perfil del locutor con ID: ${ narratorId }` );
+    navigation( narratorId );
   }
 
-  const handleDeleteNarrator = ( narratorId ) => {
+  const handleDeleteNarrator = async ( narratorId ) => {
     console.log( `Eliminar locutor con ID: ${ narratorId }` );
+
+    await handleDeleteUser( narratorId );
   }
 
   const handleSearch = ( event ) => {
@@ -149,9 +154,9 @@ export const NarratorsView = () => {
                 <MenuItem value=''>
                   <em>Seleccione</em>
                 </MenuItem>
-                {citiesData.map((city) => (
-                  <MenuItem key={city} value={city}>
-                    {city}
+                {cities.map(({ name }) => (
+                  <MenuItem key={ name } value={ name }>
+                    { name }
                   </MenuItem>
                 ))}
               </Select>
@@ -173,9 +178,9 @@ export const NarratorsView = () => {
                 <MenuItem value=''>
                   <em>Seleccione</em>
                 </MenuItem>
-                {specialtiesData.map((specialty) => (
-                  <MenuItem key={specialty} value={specialty}>
-                    {specialty}
+                { tags.map(( tag ) => (
+                  <MenuItem key={ tag._id } value={ tag.name }>
+                    { tag.name }
                   </MenuItem>
                 ))}
               </Select>
@@ -209,13 +214,13 @@ export const NarratorsView = () => {
                     }) => (
                     <TableRow key={ uid }>
                       <TableCell>{ `${ name } ${ lastName }` }</TableCell>
-                      <TableCell>{ 'Santiago' }</TableCell>
+                      <TableCell>{ city }</TableCell>
                       <TableCell>{ tags }</TableCell>
                       <TableCell>
                         <Button
                           variant='outlined'
                           color='primary'
-                          sx={{ borderRadius: 8 }}
+                          sx={{ borderRadius: 8, width: 110 }}
                           onClick={ () => handleViewProfile( uid ) }
                         >
                           Ver Perfil
@@ -225,7 +230,7 @@ export const NarratorsView = () => {
                         <Button
                           variant='outlined'
                           color='error'
-                          sx={{ borderRadius: 8 }}
+                          sx={{ borderRadius: 8, width: 110 }}
                           onClick={ () => handleDeleteNarrator( uid ) }
                         >
                           Eliminar

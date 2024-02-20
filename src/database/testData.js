@@ -868,16 +868,16 @@ export const testBookingData = [
 ];
 
 export const citiesData = [
-  'Santiago',
-  'Valparaíso',
-  'Concepción',
-  'La Serena',
-  'Arica',
-  'Antofagasta',
-  'Temuco',
-  'Valdivia',
-  'Iquique',
-  'Punta Arenas',
+  { name: 'Santiago' },
+  { name: 'Valparaíso' },
+  { name: 'Concepción' },
+  { name: 'La Serena' },
+  { name: 'Arica' },
+  { name: 'Antofagasta' },
+  { name: 'Temuco' },
+  { name: 'Valdivia' },
+  { name: 'Iquique' },
+  { name: 'Punta Arenas' },
 ];
 
 export const specialtiesData = [

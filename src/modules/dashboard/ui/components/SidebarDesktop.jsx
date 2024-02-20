@@ -38,6 +38,7 @@ export const SidebarDesktop = ({
         <SidebarAvatar
           avatar={ user.img }
           name={ user.name }
+          lastName={ user.lastName }
         />
 
         <Divider sx={{ m: 2 }}/>

@@ -19,7 +19,8 @@ import {
 import {
   DashboardPaper,
   DashboardRegionGraph,
-  DashboardTagsPieGraph
+  DashboardTagsPieGraph,
+  HomeMap
 } from '../components';
 // Database
 import {
@@ -57,23 +58,8 @@ const reservationData = [
 export const DashboardView = () => {
   return (
     <DashboardPaper pageTitle='Estadísticas Generales'>
-      { /* Ragion Graph */ }
-      <DashboardRegionGraph />
-
-      <Grid
-        item
-        xs={ 12 }
-        md={ 6 }
-      >
-        <Typography
-          variant='h4'
-          textAlign='center'
-          mb={ 2 }
-        >
-          Locutores por Tag
-        </Typography>
-
-        <DashboardTagsPieGraph />
+      <Grid item xs={ 12 } md={ 12 }>
+        <HomeMap />
       </Grid>
     </DashboardPaper>
   );

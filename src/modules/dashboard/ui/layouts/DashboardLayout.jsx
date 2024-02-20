@@ -48,37 +48,43 @@ export const DashboardLayout = ({ children }) => {
         display: 'flex'
       }}
     >
-      <Navbar />
+      {
+        ( user )
+          ? <>
+            <Navbar />
 
-      <SidebarDesktop
-        user={ user }
-        drawerWidth={ drawerWidth } 
-        handleNavigate={ handleNavigate }
-      />
+            <SidebarDesktop
+              user={ user }
+              drawerWidth={ drawerWidth } 
+              handleNavigate={ handleNavigate }
+            />
 
-      <SidebarMobile
-        user={ user }
-        drawerWidth={ drawerWidth } 
-        handleNavigate={ handleNavigate }
-      />
+            <SidebarMobile
+              user={ user }
+              drawerWidth={ drawerWidth } 
+              handleNavigate={ handleNavigate }
+            />
 
-      <Box
-        component='main'
-        bgcolor='#E8E8E8'
-        sx={{
-          pb: 10,
-          height: '100%',
-          flexGrow: 1,
-        }}
-      >
-        {
-          isLoading
-            ? <LoadingPage />
-            : <Box className='animate__animated animate__fadeIn'>
-                { children }
-              </Box>
-        }
-      </Box>
+            <Box
+              component='main'
+              bgcolor='#E8E8E8'
+              sx={{
+                pb: 10,
+                height: '100%',
+                flexGrow: 1,
+              }}
+            >
+              {
+                isLoading
+                  ? <LoadingPage />
+                  : <Box className='animate__animated animate__fadeIn'>
+                      { children }
+                    </Box>
+              }
+            </Box>
+          </>
+        : <></>
+      }
     </Box>
   );
 }

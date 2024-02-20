@@ -24,10 +24,14 @@ export const AuthLoginView = ({
   reset,
 }) => {
   const [ isRemember, setIsRemember ] = useState( false );
+  const [ rememberedName, setRememberedName ] = useState( '' );
   const { status } = useContext( AuthContext );
 
-  const handleRememberChange = () => {
+  const handleRememberChange = ( event ) => {
     setIsRemember( !isRemember );
+  }
+
+  const handleGetRememberName = ( name = '' ) => {
   }
 
   return (
@@ -70,7 +74,7 @@ export const AuthLoginView = ({
             type='checkbox'
             name='remenber'
             checked={ isRemember }
-            onChange={ handleRememberChange }
+            onChange={ ( event ) => handleRememberChange( event ) }
           />
         }
         label='Recordarme'

@@ -8,7 +8,8 @@ import {
 
 export const SidebarAvatar = ({
   avatar = '',
-  name = ''
+  name = '',
+  lastName = ''
 }) => {
   return (
     <ListItem
@@ -44,7 +45,7 @@ export const SidebarAvatar = ({
         fontSize={ 20 }
         fontWeight='bold'
       >
-        { name }
+        { `${ name } ${ lastName }` }
       </Typography>
     </ListItem>
   );

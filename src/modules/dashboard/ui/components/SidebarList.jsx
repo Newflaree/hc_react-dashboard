@@ -22,7 +22,6 @@ export const SidebarList = ({ handleNavigate }) => {
   const location = useLocation();
 
   const isActive = ( path ) => {
-    console.log();
     return location.pathname === path;
   }
 

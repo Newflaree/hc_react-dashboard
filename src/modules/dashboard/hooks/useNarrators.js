@@ -9,6 +9,7 @@ import { appApi } from '../../../api';
 export const useNarrators = () => {
   const [ narrators, setNarrators ] = useState([]);
   const [ totalNarrators, setTotalNarrators ] = useState( 0 );
+  const [ user, setUser ] = useState( null );
 
   useEffect( () => {
     const initFetch = async () => {
@@ -16,12 +17,13 @@ export const useNarrators = () => {
     }
 
     initFetch();
-
-    console.log( 'TOCK' );
-    console.log({ totalNarrators, narrators });
   }, [] );
 
+  const handleGetUserById = async ( uid ) => {
+    const { data } = await appApi.get( `/users/${ uid }` );
 
+    setUser( data.currentUser )
+  }
 
   const handleGetNarrators = async () => {
     const { data } = await appApi.get( '/users/narrators' );
@@ -33,7 +35,9 @@ export const useNarrators = () => {
   return {
     narrators,
     totalNarrators,
+    user,
 
-    handleGetNarrators
+    handleGetNarrators,
+    handleGetUserById
   }
 }

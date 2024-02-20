@@ -7,7 +7,7 @@ export const appTheme = createTheme({
       main: '#1D3B86'
     },
     secondary: {
-      main: '#1D3B86'
+      main: '#6CC4C4'
     },
     error: {
       main: '#D32F2F'

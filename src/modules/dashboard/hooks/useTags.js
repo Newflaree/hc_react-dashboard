@@ -84,8 +84,7 @@ export const useTags = () => {
             setTags( allTags );
             setCountTags( totalTags );
 
-            } catch ( error ) {
-            console.log( 'aljflsjflsajflaskdjf' );
+          } catch ( error ) {
             console.log( error.response.data.message );
           }
           
@@ -120,6 +119,7 @@ export const useTags = () => {
 
 
   return {
+    tags,
     countTags,
     handleAddTag,
     handleDeleteTag,

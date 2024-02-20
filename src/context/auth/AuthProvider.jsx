@@ -19,13 +19,15 @@ const AUTH_INITIAL_STATE =	{
   errorMessage: ''
 }
 
-
-
 export const AuthProvider = ({ children }) => {
   const [ state, dispatch ] = useReducer( authReducer, AUTH_INITIAL_STATE );
 
   useEffect( () => {
-    checkToken();
+    const initState = async () => {
+      await checkToken();
+    }
+
+    initState();
   }, [] );
 
   const checkToken = async () => {
@@ -36,25 +38,27 @@ export const AuthProvider = ({ children }) => {
         type: '[AUTH] - NotAuthenticated'
       });
 
-      const resp = await appApi.get( '/auth' );
 
-      if ( resp.status !== 200 ) {
+      const { status, data } = await appApi.get( '/auth/' );
+
+      if ( status !== 200 ) {
         return dispatch({
           type: '[AUTH] - NotAuthenticated'
         });
       }
 
-      localStorage.setItem( 'token', resp.data.token );
+      localStorage.setItem( 'token', data.token );
 
       dispatch({
         type: '[AUTH] - SignUp',
         payload: {
-          token: resp.data.token,
-          user: resp.data.user
+          token: data.token,
+          user: data.loggedUser
         }
       });
 
     } catch ( error ) {
+      console.log( error );
     }
   }
 
@@ -81,8 +85,6 @@ export const AuthProvider = ({ children }) => {
         error.response.data.message ||
         error.message ||
         error.response.data.errors[0].msg
-      
-      console.log( error.response.data.message );
 
       dispatch({
         type: '[AUTH] - AddError',
@@ -93,6 +95,7 @@ export const AuthProvider = ({ children }) => {
 
   const authLogOut = () => {
     localStorage.removeItem( 'token' );
+
     dispatch({
       type: '[AUTH] - LogOut'
     });
@@ -110,7 +113,8 @@ export const AuthProvider = ({ children }) => {
         ...state,
         authSignIn,
         authLogOut,
-        authRemoveError
+        authRemoveError,
+        checkToken
       }}
     >
       { children }

@@ -2,6 +2,7 @@ export * from './DashboardPaper';
 export * from './DashboardRegionGraph';
 export * from './DashboardTagsPieGraph';
 export * from './EmptyTable';
+export * from './HomeMap';
 export * from './Navbar';
 export * from './LoadingPage';
 export * from './SidebarAvatar';
