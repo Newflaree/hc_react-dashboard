@@ -66,6 +66,7 @@ export const DashboardLayout = ({ children }) => {
             />
 
             <Box
+              position='relative'
               component='main'
               bgcolor='#E8E8E8'
               sx={{
@@ -74,13 +75,24 @@ export const DashboardLayout = ({ children }) => {
                 flexGrow: 1,
               }}
             >
-              {
-                isLoading
-                  ? <LoadingPage />
-                  : <Box className='animate__animated animate__fadeIn'>
-                      { children }
-                    </Box>
-              }
+              <Box
+                display={ isLoading ? 'block' : 'none' }
+                className='animate__animated animate__fadeOut'
+              >
+                <Box
+                  bgcolor='white'
+                  height='100vh'
+                  width='100%'
+                >
+                  <LoadingPage />
+                </Box>
+              </Box>
+
+              <Box
+                className=''
+              >
+                { children }
+              </Box>
             </Box>
           </>
         : <></>

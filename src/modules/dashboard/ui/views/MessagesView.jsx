@@ -125,6 +125,7 @@ export const MessagesView = ({ swals = [] }) => {
             item
             mt={ 3 }
             xs={ 12 }
+            md={ 6 }
           >
             <Button
               variant='contained'
@@ -140,6 +141,30 @@ export const MessagesView = ({ swals = [] }) => {
               }}
             >
               Enviar Mensaje
+            </Button>
+          </Grid>
+          <Grid
+            item
+            mt={ 3 }
+            xs={ 12 }
+            md={ 6 }
+          >
+            <Button
+              disabled={ message.length > 0 ? false : true }
+              variant='contained'
+              color='secondary'
+              onClick={ handleSendMessage }
+              sx={{
+                borderRadius: 4,
+                p: 1,
+                color: 'white',
+                width: {
+                  xs: '100%',
+                  md: '200px'
+                }
+              }}
+            >
+              Vista Previa
             </Button>
           </Grid>
         </Grid>
