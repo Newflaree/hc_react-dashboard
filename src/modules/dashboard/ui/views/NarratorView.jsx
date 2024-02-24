@@ -1,142 +1,82 @@
-// React
-import { useEffect } from 'react';
-// React Router Dom
-import { useParams } from 'react-router-dom';
 // Material UI
 import {
-  Box,
   Grid,
-  Typography,
 } from '@mui/material';
-import {
-  Star,
-  StarHalfOutlined,
-  StarOutline
-} from '@mui/icons-material';
 // Components
-import { DashboardPaper, LoadingPage } from '../components';
-// Hooks
-import { useNarrators } from '../../hooks';
+import {
+  DashboardPaper,
+  NarratorButtonBox,
+  NarratorHeader,
+  NarratorInfo,
+  NarratorNextBooking,
+  NarratorPendingPay
+} from '../components';
+// Layouts
+import { DashboardLayout } from '../layouts';
 
 
-export const NarratorView = () => {
-  const { id } = useParams();
-  const { user, handleGetUserById } = useNarrators();
-
-  useEffect( () => {
-    const initUser = async () => {
-      await handleGetUserById( id );
-    }
-
-    initUser();
-  }, [ id ] );
-
+export const NarratorView = ({ user }) => {
   return (
-    <DashboardPaper pageTitle='Detalle del Locutor'>
-      {
-        user 
-          ? (
-            <Grid container>
+    <DashboardLayout
+      pageTitle='Hola'
+    >
+      <DashboardPaper pageTitle='Detalle del Locutor'>
+        {
+          user 
+            ? (
               <Grid
-                item
-                xs={ 12 }
+                container
+                sx={{
+                  px: {
+                    xs: 4,
+                    md: 10
+                  }
+                }}
               >
-                <Box
-                  display='flex'
-                  justifyContent='center'
-                  alignItems='center'
+                <Grid
+                  item
+                  xs={ 12 }
+                  mb={ 4 }
                 >
-                  <img
-                    src={ user.img }
-                    alt='avatar'
-                    style={{
-                      marginBottom: '20px',
-                      width: '150px',
-                      height: '150px',
-                      borderRadius: '50%'
-                    }}
-                  />
-                </Box>
-
-                <Typography
-                  variant='h4'
-                  component='h4'
-                  textAlign='center'
-                  color='primary'
-                >
-                  { `${ user.name } ${ user.lastName }` }
-                </Typography>
-
-                <Typography
-                  variant='h5'
-                  component='h5'
-                  textAlign='center'
-                >
-                  { user.tags[0] }
-                </Typography>
-
-                <Typography
-                  variant='h5'
-                  component='h5'
-                  textAlign='center'
-                  color='secondary'
-                >
-                  { user.city }
-                </Typography>
+                  <NarratorHeader user={ user } />
+                </Grid>
 
                 <Grid
                   item
                   xs={ 12 }
-                  px={ 10 }
-                  pt={ 2 }
-                  pb={ 4 }
+                  mb={ 4 }
                 >
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      textAlign: 'center',
-                    }}
-                  >
-                    <Star sx={{ color: 'gold' }} />
-                    <Star sx={{ color: 'gold' }} />
-                    <Star sx={{ color: 'gold' }} />
-                    <StarHalfOutlined sx={{ color: 'gold' }} />
-                    <StarOutline sx={{ color: 'gold' }} />
-                    <Typography
-                      ml={ 1 }
-                    >
-                      { `(${ '20' })` }
-                    </Typography>
-                  </Box>
+                  <NarratorInfo user={ user } />
+                </Grid>
+
+                <Grid
+                  item
+                  xs={ 12 }
+                  mb={ 4 }
+                >
+                  <NarratorNextBooking user={ user }/>
+                </Grid>
+
+                <Grid
+                  item
+                  xs={ 12 }
+                  mb={ 8 }
+                >
+                  <NarratorPendingPay user={ user } />
+                </Grid>
+
+                <Grid
+                  item
+                  xs={ 12 }
+                  mb={ 4 }
+                >
+                  <NarratorButtonBox />
                 </Grid>
               </Grid>
-
-              <Grid
-                item
-                xs={ 12 }
-              >
-                <Typography
-                  sx={{
-                    px: {
-                      xs: 4,
-                      md: 10
-                    }
-                  }}
-                >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean risus elit, ullamcorper eget nisl nec, tempus tempor lorem. Vestibulum euismod orci eu tellus convallis, a eleifend metus posuere. 
-                </Typography>
-              </Grid>
-
-              <Grid
-                item
-                xs={ 12 }
-              >
-              </Grid>
-            </Grid>
-          )
-          : <></>
-      }
-    </DashboardPaper>
+            )
+            : <></>
+        }
+      </DashboardPaper>
+    </DashboardLayout>
   );
 }

@@ -123,6 +123,7 @@ export const TagsView = () => {
           <TableHead>
             <TableRow>
               <TableCell>Nombre del Tag</TableCell>
+              <TableCell>Número de Locutores</TableCell>
               <TableCell>Número de Usuarios</TableCell>
               <TableCell>Eliminar Tag</TableCell>
             </TableRow>
@@ -135,6 +136,7 @@ export const TagsView = () => {
                 : filteredTags.map( ( tag ) => (
                 <TableRow key={ tag._id }>
                   <TableCell>{ tag.name }</TableCell>
+                  <TableCell>{ tag.selectedMount }</TableCell>
                   <TableCell>{ tag.selectedMount }</TableCell>
                   <TableCell>
                     <Button

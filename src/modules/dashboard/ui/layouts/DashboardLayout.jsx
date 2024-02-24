@@ -89,6 +89,7 @@ export const DashboardLayout = ({ children }) => {
               </Box>
 
               <Box
+                display={ isLoading ? 'none' : 'block' }
                 className=''
               >
                 { children }

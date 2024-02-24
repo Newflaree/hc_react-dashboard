@@ -58,7 +58,7 @@ export const NarratorsView = ({ navigation }) => {
       ( narrator ) =>
         narrator.name.toLowerCase().includes( searchTerm ) ||
         narrator.lastName.toLowerCase().includes( searchTerm ) ||
-        narrator.city.toLowerCase().includes( searchTerm ) ||
+        narrator.city.name.toLowerCase().includes( searchTerm ) ||
         narrator.tags[0].toLowerCase().includes( searchTerm )
     )
 
@@ -79,7 +79,7 @@ export const NarratorsView = ({ navigation }) => {
 
   const filteredByCityAndSpecialty = displayNarrators.filter(
     ( narrator ) =>
-      ( !selectedCity || narrator.city === selectedCity ) &&
+      ( !selectedCity || narrator.city.name === selectedCity ) &&
       ( !selectedSpecialty || narrator.tags[0] === selectedSpecialty ) 
   );
 
@@ -120,7 +120,7 @@ export const NarratorsView = ({ navigation }) => {
               variant='h2'
               component='h2'
             >
-              Locutores
+              Gestión de Locutores
             </Typography>
           </Grid>
           {/*Title*/}
@@ -147,15 +147,15 @@ export const NarratorsView = ({ navigation }) => {
             <FormControl fullWidth>
               <InputLabel>Ciudad</InputLabel>
               <Select
-                value={selectedCity}
+                value={ selectedCity }
                 label='Ciudad'
-                onChange={handleCityChange}
+                onChange={ handleCityChange }
               >
                 <MenuItem value=''>
                   <em>Seleccione</em>
                 </MenuItem>
-                {cities.map(({ name }) => (
-                  <MenuItem key={ name } value={ name }>
+                {cities.map(({ _id, name }) => (
+                  <MenuItem key={ _id } value={ name }>
                     { name }
                   </MenuItem>
                 ))}
@@ -171,16 +171,16 @@ export const NarratorsView = ({ navigation }) => {
             <FormControl fullWidth>
               <InputLabel>Especialidad</InputLabel>
               <Select
-                value={selectedSpecialty}
+                value={ selectedSpecialty }
                 label='Especialidad'
-                onChange={handleSpecialtyChange}
+                onChange={ handleSpecialtyChange }
               >
                 <MenuItem value=''>
                   <em>Seleccione</em>
                 </MenuItem>
-                { tags.map(( tag ) => (
-                  <MenuItem key={ tag._id } value={ tag.name }>
-                    { tag.name }
+                { tags.map(({ _id, name }) => (
+                  <MenuItem key={ _id } value={ name }>
+                    { name }
                   </MenuItem>
                 ))}
               </Select>
@@ -189,7 +189,12 @@ export const NarratorsView = ({ navigation }) => {
 
 
 
-          <TableContainer style={{ maxHeight: 300, minHeight: 300 }}>
+          <TableContainer
+            style={{
+              maxHeight: 300,
+              minHeight: 300
+            }}
+          >
             <Table stickyHeader>
               <TableHead>
                 <TableRow >
@@ -214,7 +219,7 @@ export const NarratorsView = ({ navigation }) => {
                     }) => (
                     <TableRow key={ uid }>
                       <TableCell>{ `${ name } ${ lastName }` }</TableCell>
-                      <TableCell>{ city }</TableCell>
+                      <TableCell>{ city.name }</TableCell>
                       <TableCell>{ tags }</TableCell>
                       <TableCell>
                         <Button

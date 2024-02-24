@@ -1,3 +1,5 @@
+export * from './narrators';
+
 export * from './DashboardPaper';
 export * from './DashboardRegionGraph';
 export * from './DashboardTagsPieGraph';
