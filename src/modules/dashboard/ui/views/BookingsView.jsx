@@ -77,11 +77,6 @@ export const BookingsView = () => {
   return (
     <DashboardPaper pageTitle='Gestión de Reservas'>
       <Grid container spacing={2} alignItems="center">
-        <Grid
-          item
-          xs={ 12 }
-        >
-        </Grid>
 
         <Grid item xs={12} md={12}>
           <TextField
