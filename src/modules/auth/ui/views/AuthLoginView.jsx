@@ -12,6 +12,8 @@ import {
   Link,
   TextField
 } from '@mui/material';
+// Components
+import { AuthLayout } from '../layouts';
 // Context
 import { AuthContext } from '../../../../context';
 
@@ -35,87 +37,89 @@ export const AuthLoginView = ({
   }
 
   return (
-    <form
-      onSubmit={ handleSubmit( onSubmitForm ) }
-    >
-      <TextField
-        margin='normal'
-        fullWidth
-        label='Correo Electrónico'
-        type='email'
-        autoFocus
-        { ...register( 'email', {
-          required: 'Este campo es obligatorio'
-        })}
-        error={ !!errors.email }
-        helperText={ errors.email?.message }
-      />
-
-      <TextField
-        margin='normal'
-        fullWidth
-        label='Contraseña'
-        type='password'
-        autoFocus
-        { ...register( 'password', {
-          required: 'Este campo es obligatorio'
-        })}
-        error={ !!errors.password }
-        helperText={ errors.password?.message }
-      />
-
-      <FormControlLabel
-        sx={{
-          py: 2,
-          ml: '1px'
-        }}
-        control={
-          <input
-            type='checkbox'
-            name='remenber'
-            checked={ isRemember }
-            onChange={ ( event ) => handleRememberChange( event ) }
-          />
-        }
-        label='Recordarme'
-      />
-
-      <Button
-        type='submit'
-        fullWidth
-        variant='contained'
-        sx={{
-          borderRadius: 4,
-          p: 1,
-          bgcolor: 'primary',
-          mt: 3,
-          mb: 2
-        }}
+    <AuthLayout>
+      <form
+        onSubmit={ handleSubmit( onSubmitForm ) }
       >
-        {
-          (status !== 'authenticated')
-            ? 'Iniciar Sesión'
-            : <CircularProgress size={ 24 } />
-        }
-        
-      </Button>
+        <TextField
+          margin='normal'
+          fullWidth
+          label='Correo Electrónico'
+          type='email'
+          autoFocus
+          { ...register( 'email', {
+            required: 'Este campo es obligatorio'
+          })}
+          error={ !!errors.email }
+          helperText={ errors.email?.message }
+        />
 
-      <Grid
-        container
-        mt={ 2 }
-      >
-        <Grid
-          item
-          xs
+        <TextField
+          margin='normal'
+          fullWidth
+          label='Contraseña'
+          type='password'
+          autoFocus
+          { ...register( 'password', {
+            required: 'Este campo es obligatorio'
+          })}
+          error={ !!errors.password }
+          helperText={ errors.password?.message }
+        />
+
+        <FormControlLabel
+          sx={{
+            py: 2,
+            ml: '1px'
+          }}
+          control={
+            <input
+              type='checkbox'
+              name='remenber'
+              checked={ isRemember }
+              onChange={ ( event ) => handleRememberChange( event ) }
+            />
+          }
+          label='Recordarme'
+        />
+
+        <Button
+          type='submit'
+          fullWidth
+          variant='contained'
+          sx={{
+            borderRadius: 4,
+            p: 1,
+            bgcolor: 'primary',
+            mt: 3,
+            mb: 2
+          }}
         >
-          <Link
-            href='/'
-            variant='body1'
+          {
+            (status !== 'authenticated')
+              ? 'Iniciar Sesión'
+              : <CircularProgress size={ 24 } />
+          }
+          
+        </Button>
+
+        <Grid
+          container
+          mt={ 2 }
+        >
+          <Grid
+            item
+            xs
           >
-            ¿Olvidaste tu contraseña?
-          </Link>
+            <Link
+              href='/'
+              variant='body1'
+            >
+              ¿Olvidaste tu contraseña?
+            </Link>
+          </Grid>
         </Grid>
-      </Grid>
-    </form>
+      </form>
+    </AuthLayout>
   );
 }

@@ -1,4 +1,4 @@
-// React Router Dom
+// React Router DOM
 import {
   Navigate,
   Routes,
@@ -20,14 +20,14 @@ import {
 export const DashboardRoutes = () => {
   return (
     <Routes>
-      <Route path='/' element={ <DashboardPage /> } />
-      <Route path='/bookings' element={ <BookingsPage /> } />
-      <Route path='/messages' element={ <MessagesPage /> } />
-      <Route path='/tags' element={ <TagsPage /> } />
-      <Route path='/users' element={ <UsersPage /> } />
-      <Route path='/users/:id' element={ <UserPage /> } />
-      <Route path='/narrators' element={ <NarratorsPage /> } />
+      <Route path='/'              element={ <DashboardPage /> } />
+      <Route path='/bookings'      element={ <BookingsPage /> } />
+      <Route path='/messages'      element={ <MessagesPage /> } />
+      <Route path='/narrators'     element={ <NarratorsPage /> } />
       <Route path='/narrators/:id' element={ <NarratorPage /> } />
+      <Route path='/tags'          element={ <TagsPage /> } />
+      <Route path='/users'         element={ <UsersPage /> } />
+      <Route path='/users/:id'     element={ <UserPage /> } />
 
       <Route path='/*' element={ <Navigate to='/' /> } />
     </Routes>

@@ -1,67 +1,23 @@
-// React
-import { useState, useEffect, useContext } from 'react';
-// React Hook Form
-import { useForm } from 'react-hook-form';
 // Hooks
-import { useSwal } from '../../dashboard/hooks';
-// Layouts
-import { AuthLayout } from '../ui/layouts';
+import { useAuth } from '../hooks';
 // Views
 import { AuthLoginView } from '../ui/views';
-// Context
-import { AuthContext } from '../../../context';
 
-
-const resetForm = () => {
-  return {
-    email: '',
-    password: ''
-  }
-}
 
 export const AuthLoginPage = () => {
   const {
-    authSignIn,
-    errorMessage,
-  } = useContext( AuthContext );
-
-  const { simpleSwal } = useSwal();
-
-  const {
+    onSubmitForm,
     register,
     handleSubmit,
-    formState: { errors },
+    errors,
     reset
-  } = useForm({
-    defaultValues: {
-      email: 'test1@email.com',
-      password: '123456'
-    }
-  });
+  } = useAuth();
 
-  useEffect( () => {
-    if ( errorMessage.length === 0 ) return;
-
-    simpleSwal( errorMessage, 'error' );
-
-  }, [ errorMessage ] );
-
-  const onSubmitForm = ( formData ) => {
-    authSignIn({
-      email: formData.email,
-      password: formData.password
-    });
-  }
-
-  return (
-    <AuthLayout>
-      <AuthLoginView
-        onSubmitForm={ onSubmitForm }
-        register={ register }
-        handleSubmit={ handleSubmit }
-        errors={ errors }
-        reset={ reset }
-      />
-    </AuthLayout>
-  );
+  return <AuthLoginView
+      onSubmitForm={ onSubmitForm }
+      register={ register }
+      handleSubmit={ handleSubmit }
+      errors={ errors }
+      reset={ reset }
+    />
 }

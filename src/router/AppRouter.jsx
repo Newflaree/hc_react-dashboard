@@ -22,6 +22,7 @@ import {
 export const AppRouter = () => {
   const { status } = useContext( AuthContext );
 
+
   if ( status === 'checking' ) return <LoadingPage />
    
   return (
@@ -30,11 +31,11 @@ export const AppRouter = () => {
         ( status !== 'authenticated' )
           ? <>
               <Route path='/auth/*' element={ <AuthRoutes /> } />
-              <Route path='/*' element={ <Navigate to='/auth/login' /> } />
+              <Route path='/*'      element={ <Navigate to='/auth/login' /> } />
             </>
           : <>
-              <Route path='/*' element={ <DashboardRoutes /> } />
-              <Route path='/*' element={ <Navigate to='/' /> } />
+              <Route path='/*'      element={ <DashboardRoutes /> } />
+              <Route path='/*'      element={ <Navigate to='/' /> } />
             </>
       }
     </Routes>

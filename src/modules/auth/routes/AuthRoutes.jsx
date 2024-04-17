@@ -1,4 +1,10 @@
-import { Navigate, Routes, Route } from 'react-router-dom';
+// React Router DOM
+import {
+  Navigate,
+  Routes,
+  Route
+} from 'react-router-dom';
+// Pages
 import { AuthLoginPage } from '../pages';
 
 
