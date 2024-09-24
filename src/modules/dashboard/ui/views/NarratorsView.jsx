@@ -225,7 +225,7 @@ export const NarratorsView = ({ navigation }) => {
                         <Button
                           variant='outlined'
                           color='primary'
-                          sx={{ borderRadius: 8, width: 110 }}
+                          sx={{ borderRadius: 8, width: 120 }}
                           onClick={ () => handleViewProfile( uid ) }
                         >
                           Ver Perfil
@@ -235,7 +235,7 @@ export const NarratorsView = ({ navigation }) => {
                         <Button
                           variant='outlined'
                           color='error'
-                          sx={{ borderRadius: 8, width: 110 }}
+                          sx={{ borderRadius: 8, width: 120 }}
                           onClick={ () => handleDeleteNarrator( uid ) }
                         >
                           Eliminar

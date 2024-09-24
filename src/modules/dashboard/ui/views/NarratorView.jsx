@@ -8,6 +8,7 @@ import {
   NarratorButtonBox,
   NarratorHeader,
   NarratorInfo,
+  NarratorBookingsHistory,
   NarratorNextBooking,
   NarratorPendingPay
 } from '../components';
@@ -63,6 +64,14 @@ export const NarratorView = ({ user }) => {
                   mb={ 8 }
                 >
                   <NarratorPendingPay user={ user } />
+                </Grid>
+
+                <Grid
+                  item
+                  xs={ 12 }
+                  mb={ 8 }
+                >
+                  <NarratorBookingsHistory />
                 </Grid>
 
                 <Grid

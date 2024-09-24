@@ -15,6 +15,10 @@ import {
   AuthProvider,
   UiProvider
 } from './context';
+import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
+
+
+mapboxgl.accessToken = 'pk.eyJ1IjoibmV3ZmxhcmUiLCJhIjoiY2tvMGRqbjFqMGNsajJvcDlqcWZrY2pnZSJ9.fWEgU2ZuPX41mhJxa-6rbg';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

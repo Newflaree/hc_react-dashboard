@@ -1,6 +1,6 @@
 // React
 import { Fragment } from 'react';
-// Material React
+// Material UI
 import {
   Chip,
   Table,
@@ -14,14 +14,17 @@ import {
 // Material Icons
 import { CreditScoreOutlined } from '@mui/icons-material';
 
-
-export const NarratorNextBooking = ({ user }) => {
+export const NarratorBookingsHistory = () => {
   const items = [
     { id: 1 },
     { id: 2 },
     { id: 3 },
     { id: 4 },
-  ]
+    { id: 5 },
+    { id: 6 },
+    { id: 7 },
+    { id: 8 },
+  ];
 
   return (
     <Fragment>
@@ -67,7 +70,7 @@ export const NarratorNextBooking = ({ user }) => {
                         cursor: 'pointer'
                       }}
                     >
-                      Test User
+                      Test Name
                     </Typography>
                   </TableCell>
                   <TableCell>
@@ -78,7 +81,7 @@ export const NarratorNextBooking = ({ user }) => {
                         cursor: 'pointer'
                       }}
                     >
-                      Test Narrator
+                      Test Name
                     </Typography>
                   </TableCell>
                   <TableCell>Test Specialty</TableCell>

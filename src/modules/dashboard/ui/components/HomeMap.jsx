@@ -1,7 +1,15 @@
+import { Map } from 'mapbox-gl';
+import {
+  useEffect
+} from 'react';
 
 export const HomeMap = () => {
 
+
   return (
-    <>Hola</>
+    <div
+      style={{ height: '100vh' }}
+    >
+    </div>
   );
 }

@@ -1,3 +1,4 @@
+export * from './NarratorBookingsHistory';
 export * from './NarratorButtonBox';
 export * from './NarratorHeader';
 export * from './NarratorInfo';
